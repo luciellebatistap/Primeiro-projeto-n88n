@@ -20,6 +20,8 @@ Projeto de automação criado na plataforma **n8n**, onde os dados enviados por 
 ## 🎯 Objetivo do projeto
 Demonstrar habilidades em automação de processos, integração entre sistemas e construção de soluções práticas para otimizar atendimento e organização de informações.
 
+Você pode importar diretamente o workflow no n8n usando o arquivo `Formulario para email (1).json`.
+
 ## 👩‍💻 Autora
 Lucielle Batista Pereira  
 Estudante e entusiasta de automação, dados e tecnologia.
