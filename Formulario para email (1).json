@@ -1,0 +1,152 @@
+{
+  "name": "Formulario para email",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        -528
+      ],
+      "id": "45c98e68-cd3c-4fe9-95c7-72dd4ee593c4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1aU2rINqt96mam-OAsno5cpjk4wnCXzWt_-2qrLZAhJs",
+          "mode": "list",
+          "cachedResultName": "Formulario de contato",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1aU2rINqt96mam-OAsno5cpjk4wnCXzWt_-2qrLZAhJs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Folha1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1aU2rINqt96mam-OAsno5cpjk4wnCXzWt_-2qrLZAhJs/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -608,
+        -160
+      ],
+      "id": "9e520d67-8788-41ac-8948-afd1e20cfcb1",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "FBOJOckmq972gPR1",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "=Estamos trabalhando na sua resposta",
+        "message": "=Ola {{ $('Formulario email').item.json.Nome }},\n\n\nEstamos trabalhando para te responder em alguns instante. \n\nObrigada pelo contato.\n\nEquipe de suporte.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -400,
+        -160
+      ],
+      "id": "da426ffe-2f75-4d41-8181-519f9f0cf9a1",
+      "name": "Send a message",
+      "webhookId": "0d7f1c5f-53f5-4e30-ab0a-5d50eeca9306",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "tSVbSuEJ4DW1ujAm",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "contato",
+        "formDescription": "Formulario de contato ao suporte tecnico",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nome",
+              "placeholder": "=Digite o seu nome completo"
+            },
+            {
+              "fieldLabel": "email",
+              "fieldType": "email",
+              "placeholder": "Digite o seu email"
+            },
+            {
+              "fieldLabel": "Mensagem",
+              "fieldType": "textarea",
+              "placeholder": "Digite a sua duvida"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        -816,
+        -160
+      ],
+      "id": "9134f96f-3639-4cc7-8a8e-c91c2be87def",
+      "name": "Formulario email",
+      "webhookId": "4317fdca-0114-41a7-9584-168f49a7b8a9"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formulario email": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "3017cdea-4ec1-4d31-9684-643eaf695a6f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "285028ca2ad7a3db246700db4e8c9b6729866867999e9aa72c3c0693ea0387e4"
+  },
+  "id": "FV6uI79PjHdgV9S4YkeiD",
+  "tags": []
+}
